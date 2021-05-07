@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "onCreate")
 
         serviceConnection = object : ServiceConnection {
             override fun onServiceConnected(p0: ComponentName?, p1: IBinder?) {
@@ -40,6 +41,36 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         unbind.setOnClickListener { unbindService() }
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart()")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart()")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume()")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause()")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop()")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy()")
+    }
+
     private fun startService() {
         val intent = Intent(this@MainActivity, SimpleService::class.java)
         //startService(intent)
@@ -58,5 +89,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun unbindService() {
         unbindService(serviceConnection)
+    }
+
+    companion object{
+        const val TAG = "MainActivity"
     }
 }
