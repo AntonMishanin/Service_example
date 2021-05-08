@@ -21,8 +21,8 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".SimpleService"/>
+        <service android:name=".SimpleService"/>
+        <service android:name=".SimpleIntentService"/>
     </application>
 
 </manifest>

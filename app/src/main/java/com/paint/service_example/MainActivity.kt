@@ -72,9 +72,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun startService() {
-        val intent = Intent(this@MainActivity, SimpleService::class.java)
-        //startService(intent)
-        ContextCompat.startForegroundService(this, intent)
+      // val intent = Intent(this@MainActivity, SimpleService::class.java)
+      // //startService(intent)
+      // ContextCompat.startForegroundService(this, intent)
+
+        val serviceIntent = Intent(this@MainActivity, SimpleIntentService::class.java)
+        ContextCompat.startForegroundService(this, serviceIntent)
     }
 
     private fun stopService() {
