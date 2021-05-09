@@ -76,8 +76,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
       // //startService(intent)
       // ContextCompat.startForegroundService(this, intent)
 
-        val serviceIntent = Intent(this@MainActivity, SimpleIntentService::class.java)
-        ContextCompat.startForegroundService(this, serviceIntent)
+       // val serviceIntent = Intent(this@MainActivity, SimpleIntentService::class.java)
+       // ContextCompat.startForegroundService(this, serviceIntent)
+
+        val jobIntent = Intent(this@MainActivity, SimpleJobIntentService::class.java)
+        SimpleJobIntentService.enqueueWork(this, jobIntent)
     }
 
     private fun stopService() {
