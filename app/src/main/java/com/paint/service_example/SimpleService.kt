@@ -3,7 +3,10 @@ package com.paint.service_example
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
+import android.media.MediaPlayer
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.paint.service_example.App.Companion.CHANNEL_ID
@@ -32,6 +35,11 @@ class SimpleService : Service() {
             .build()
 
         startForeground(11, notification)
+
+        val mediaPlayer = MediaPlayer.create(this, R.raw.demo)
+        Handler(Looper.getMainLooper()).postDelayed({
+            mediaPlayer.start()
+        }, 2500)
 
         return START_STICKY
     }
