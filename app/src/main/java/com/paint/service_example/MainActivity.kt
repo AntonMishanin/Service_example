@@ -27,7 +27,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "onCreate")
+        val value = savedInstanceState?.getString("test")
+        Log.d(TAG, "onCreate value = $value")
 
         setAlarm()
 
@@ -89,10 +90,22 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         Log.d(TAG, "onDestroy()")
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        Log.d(TAG, "onSaveInstanceState()")
+        outState.putString("test", "value")
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val value = savedInstanceState.getString("test")
+        Log.d(TAG, "onRestoreInstanceState() value = $value")
+    }
+
     private fun startService() {
-         val intent = Intent(this@MainActivity, SimpleService::class.java)
-         //startService(intent)
-         ContextCompat.startForegroundService(this, intent)
+        val intent = Intent(this@MainActivity, SimpleService::class.java)
+        //startService(intent)
+        ContextCompat.startForegroundService(this, intent)
 
         // val serviceIntent = Intent(this@MainActivity, SimpleIntentService::class.java)
         // ContextCompat.startForegroundService(this, serviceIntent)
@@ -142,7 +155,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun setAlarm() {
 
         val calendar: Calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, 19)
+        calendar.set(HOUR_OF_DAY, 19)
         calendar.set(Calendar.MINUTE, 32)
         calendar.set(Calendar.SECOND, 0)
         calendar.set(Calendar.MILLISECOND, 0)
